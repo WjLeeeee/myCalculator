@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/text_clear"
-        android:layout_width="150dp"
+        android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/circle_gray"
@@ -19,6 +19,20 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/text_7"
         app:layout_constraintStart_toStartOf="@+id/text_7" />
+
+    <TextView
+        android:id="@+id/text_back"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/circle_gray"
+        android:gravity="center"
+        android:text="B"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_clear"
+        app:layout_constraintStart_toEndOf="@+id/text_clear"
+        app:layout_constraintTop_toTopOf="@+id/text_clear" />
 
     <TextView
         android:id="@+id/text_0"
@@ -265,15 +279,15 @@
         android:id="@+id/text_remain"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="25dp"
         android:background="@drawable/circle_gray"
         android:gravity="center"
         android:text="%"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_clear"
-        app:layout_constraintStart_toEndOf="@+id/text_clear"
-        app:layout_constraintTop_toTopOf="@+id/text_clear" />
+        app:layout_constraintBottom_toBottomOf="@+id/text_back"
+        app:layout_constraintStart_toEndOf="@+id/text_back"
+        app:layout_constraintTop_toTopOf="@+id/text_back" />
 
     <TextView
         android:id="@+id/textView"
@@ -288,7 +302,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/result_text"
+        android:id="@+id/final_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
