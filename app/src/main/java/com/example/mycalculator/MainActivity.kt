@@ -8,7 +8,7 @@ import java.math.RoundingMode
 
 class MainActivity : AppCompatActivity() {
 
-    private val backText by lazy { findViewById<TextView>(R.id.text_back)}
+    private val backText by lazy { findViewById<TextView>(R.id.text_back) }
     private val finalText by lazy { findViewById<TextView>(R.id.final_text) }
     private val clearText by lazy { findViewById<TextView>(R.id.text_clear) }
     private val resultText by lazy { findViewById<TextView>(R.id.text_result) }
@@ -36,117 +36,84 @@ class MainActivity : AppCompatActivity() {
         var firstNum = ""
         var lastNum = ""
         var operator = ""
-        clearText.setOnClickListener {
-            finalText.setText("0")
-        }
-        zeroText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("0")
-            }else{
-                var newNum = currentNum+"0"
-                finalText.setText(newNum)
-            }
-        }
-        oneText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("1")
-            }else{
-                var newNum = currentNum+"1"
-                finalText.setText(newNum)
-            }
-        }
-        twoText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("2")
-            }else{
-                var newNum = currentNum+"2"
-                finalText.setText(newNum)
-            }
-        }
-        threeText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("3")
-            }else{
-                var newNum = currentNum+"3"
-                finalText.setText(newNum)
-            }
-        }
-        fourText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("4")
-            }else{
-                var newNum = currentNum+"4"
-                finalText.setText(newNum)
-            }
-        }
-        fiveText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("5")
-            }else{
-                var newNum = currentNum+"5"
-                finalText.setText(newNum)
-            }
-        }
-        sixText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("6")
-            }else{
-                var newNum = currentNum+"6"
-                finalText.setText(newNum)
-            }
-        }
-        sevenText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("7")
-            }else{
-                var newNum = currentNum+"7"
-                finalText.setText(newNum)
-            }
-        }
-        eightText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("8")
-            }else{
-                var newNum = currentNum+"8"
-                finalText.setText(newNum)
-            }
-        }
-        nineText.setOnClickListener {
-            val currentNum = finalText.text.toString()
-            if(finalText.text == "0"){
-                finalText.setText("9")
-            }else{
-                var newNum = currentNum+"9"
-                finalText.setText(newNum)
-            }
-        }
+        zeroText.setOnClickListener { clickListener("0") }
+        oneText.setOnClickListener { clickListener("1") }
+        twoText.setOnClickListener { clickListener("2") }
+        threeText.setOnClickListener { clickListener("3") }
+        fourText.setOnClickListener { clickListener("4") }
+        fiveText.setOnClickListener { clickListener("5") }
+        sixText.setOnClickListener { clickListener("6") }
+        sevenText.setOnClickListener { clickListener("7") }
+        eightText.setOnClickListener { clickListener("8") }
+        nineText.setOnClickListener { clickListener("9") }
+        clearText.setOnClickListener { finalText.setText("0") }
         comaText.setOnClickListener {
             val currentNum = finalText.text.toString()
-            if(currentNum.contains("+")||currentNum.contains("-")||currentNum.contains("*")||currentNum.contains("/")||currentNum.contains("%")){
-                var newNum = currentNum+"."
-                finalText.setText(newNum)
-            }else if(currentNum.contains(".")){
+            if(currentNum.last().toString() == "."){
                 finalText.setText(currentNum)
-            }else{
-                var newNum = currentNum+"."
+            }
+            else if (currentNum.contains(".")) {
+                if(!currentNum.contains("+") && !currentNum.contains("-") && !currentNum.contains("*") &&
+                    !currentNum.contains("/") && !currentNum.contains("%")){
+                    finalText.setText(currentNum)
+                }else{
+                    if(currentNum.contains("+")){
+                        var numSplit = currentNum.split("+")
+                        if(numSplit[1].contains(".")){
+                            finalText.setText(currentNum)
+                        }else{
+                            var newNum = currentNum + "."
+                            finalText.setText(newNum)
+                        }
+                    }
+                    if(currentNum.contains("-")){
+                        var numSplit = currentNum.split("-")
+                        if(numSplit[1].contains(".")){
+                            finalText.setText(currentNum)
+                        }else{
+                            var newNum = currentNum + "."
+                            finalText.setText(newNum)
+                        }
+                    }
+                    if(currentNum.contains("*")){
+                        var numSplit = currentNum.split("*")
+                        if(numSplit[1].contains(".")){
+                            finalText.setText(currentNum)
+                        }else{
+                            var newNum = currentNum + "."
+                            finalText.setText(newNum)
+                        }
+                    }
+                    if(currentNum.contains("/")){
+                        var numSplit = currentNum.split("/")
+                        if(numSplit[1].contains(".")){
+                            finalText.setText(currentNum)
+                        }else{
+                            var newNum = currentNum + "."
+                            finalText.setText(newNum)
+                        }
+                    }
+                    if(currentNum.contains("%")){
+                        var numSplit = currentNum.split("%")
+                        if(numSplit[1].contains(".")){
+                            finalText.setText(currentNum)
+                        }else{
+                            var newNum = currentNum + "."
+                            finalText.setText(newNum)
+                        }
+                    }
+                }
+            } else {
+                var newNum = currentNum + "."
                 finalText.setText(newNum)
             }
         }
         backText.setOnClickListener {
             var currentNum = finalText.text.toString()
-            if(currentNum != "0"){
+            if (currentNum != "0") {
                 var newCurrentNum = currentNum.dropLast(1)
                 finalText.setText(newCurrentNum)
-            }else{
+            } else {
                 finalText.setText(currentNum)
             }
         }
@@ -154,13 +121,12 @@ class MainActivity : AppCompatActivity() {
             var currentNum = finalText.text.toString()
             var currentNumLast = currentNum.toCharArray().last()
             //제일 마지막이 연산자일경우, 연산자중복으로 사용못하게.
-            if(currentNum.toCharArray().last() == '+'){
+            if (currentNum.toCharArray().last() == '+') {
                 finalText.setText(currentNum)
-            }else if(currentNumLast == '-' || currentNumLast == '*' || currentNumLast == '/' || currentNumLast == '%'){
+            } else if (currentNumLast == '-' || currentNumLast == '*' || currentNumLast == '/' || currentNumLast == '%') {
                 var newCurrentNum = currentNum.dropLast(1)
                 finalText.setText(newCurrentNum + "+")
-            }
-            else{
+            } else {
                 firstNum = currentNum
                 operator = "+"
                 var newNum = currentNum + "+"
@@ -170,12 +136,12 @@ class MainActivity : AppCompatActivity() {
         subText.setOnClickListener {
             var currentNum = finalText.text.toString()
             var currentNumLast = currentNum.toCharArray().last()
-            if(currentNum.toCharArray().last() == '-'){
+            if (currentNum.toCharArray().last() == '-') {
                 finalText.setText(currentNum)
-            }else if(currentNumLast == '+' || currentNumLast == '*' || currentNumLast == '/' || currentNumLast == '%'){
+            } else if (currentNumLast == '+' || currentNumLast == '*' || currentNumLast == '/' || currentNumLast == '%') {
                 var newCurrentNum = currentNum.dropLast(1)
                 finalText.setText(newCurrentNum + "-")
-            }else{
+            } else {
                 firstNum = currentNum
                 operator = "-"
                 var newNum = currentNum + "-"
@@ -185,12 +151,12 @@ class MainActivity : AppCompatActivity() {
         multiText.setOnClickListener {
             var currentNum = finalText.text.toString()
             var currentNumLast = currentNum.toCharArray().last()
-            if(currentNum.toCharArray().last() == '*'){
+            if (currentNum.toCharArray().last() == '*') {
                 finalText.setText(currentNum)
-            }else if(currentNumLast == '+' || currentNumLast == '-' || currentNumLast == '/' || currentNumLast == '%'){
+            } else if (currentNumLast == '+' || currentNumLast == '-' || currentNumLast == '/' || currentNumLast == '%') {
                 var newCurrentNum = currentNum.dropLast(1)
                 finalText.setText(newCurrentNum + "*")
-            }else{
+            } else {
                 firstNum = currentNum
                 operator = "*"
                 var newNum = currentNum + "*"
@@ -200,12 +166,12 @@ class MainActivity : AppCompatActivity() {
         divText.setOnClickListener {
             var currentNum = finalText.text.toString()
             var currentNumLast = currentNum.toCharArray().last()
-            if(currentNum.toCharArray().last() == '/'){
+            if (currentNum.toCharArray().last() == '/') {
                 finalText.setText(currentNum)
-            }else if(currentNumLast == '+' || currentNumLast == '-' || currentNumLast == '*' || currentNumLast == '%'){
+            } else if (currentNumLast == '+' || currentNumLast == '-' || currentNumLast == '*' || currentNumLast == '%') {
                 var newCurrentNum = currentNum.dropLast(1)
                 finalText.setText(newCurrentNum + "/")
-            }else{
+            } else {
                 firstNum = currentNum
                 operator = "/"
                 var newNum = currentNum + "/"
@@ -215,12 +181,12 @@ class MainActivity : AppCompatActivity() {
         remainText.setOnClickListener {
             var currentNum = finalText.text.toString()
             var currentNumLast = currentNum.toCharArray().last()
-            if(currentNum.toCharArray().last() == '%'){
+            if (currentNum.toCharArray().last() == '%') {
                 finalText.setText(currentNum)
-            }else if(currentNumLast == '+' || currentNumLast == '-' || currentNumLast == '*' || currentNumLast == '/'){
+            } else if (currentNumLast == '+' || currentNumLast == '-' || currentNumLast == '*' || currentNumLast == '/') {
                 var newCurrentNum = currentNum.dropLast(1)
                 finalText.setText(newCurrentNum + "%")
-            }else{
+            } else {
                 firstNum = currentNum
                 operator = "%"
                 var newNum = currentNum + "%"
@@ -229,15 +195,15 @@ class MainActivity : AppCompatActivity() {
         }
         resultText.setOnClickListener {
             var currentNum = finalText.text.toString()
-            when{
+            when {
                 operator == "+" -> {
                     val parts = currentNum.split(operator)
-                    if(parts[0].contains(".")||parts[1].contains(".")){
+                    if (parts[0].contains(".") || parts[1].contains(".")) {
                         val front = parts[0].toDouble().toString()
                         val back = parts[1].toDouble().toString()
                         val part0 = BigDecimal(front)
                         val part1 = BigDecimal(back)
-                        var result = part0+part1
+                        var result = part0 + part1
                         //result를 1로 나눈 나머지가 0인지 확인한다. 0이면 소수점 없애기.
                         if (result.remainder(BigDecimal.ONE).compareTo(BigDecimal.ZERO) == 0) {
                             result = result.setScale(0, RoundingMode.DOWN)
@@ -245,81 +211,83 @@ class MainActivity : AppCompatActivity() {
                             firstNum = ""
                             operator = ""
                             lastNum = ""
-                        }else{
+                        } else {
                             finalText.setText(result.toString())
                             firstNum = ""
                             operator = ""
                             lastNum = ""
                         }
-                    }
-                    else{
-                        val result = parts[0].toInt()+parts[1].toInt()
+                    } else {
+                        val result = parts[0].toInt() + parts[1].toInt()
                         finalText.setText(result.toString())
                         firstNum = ""
                         operator = ""
                         lastNum = ""
                     }
                 }
+
                 operator == "-" -> {
                     val parts = currentNum.split(operator)
-                    if(parts[0].contains(".")||parts[1].contains(".")){
+                    if (parts[0].contains(".") || parts[1].contains(".")) {
                         val front = parts[0].toDouble().toString()
                         val back = parts[1].toDouble().toString()
                         val part0 = BigDecimal(front)
                         val part1 = BigDecimal(back)
-                        var result = part0-part1
+                        var result = part0 - part1
                         if (result.remainder(BigDecimal.ONE).compareTo(BigDecimal.ZERO) == 0) {
                             result = result.setScale(0, RoundingMode.DOWN)
                             finalText.setText(result.toString())
                             firstNum = ""
                             operator = ""
                             lastNum = ""
-                        }else{
+                        } else {
                             finalText.setText(result.toString())
                             firstNum = ""
                             operator = ""
                             lastNum = ""
                         }
 
-                    }else{
-                        val result = parts[0].toInt()-parts[1].toInt()
+                    } else {
+                        val result = parts[0].toInt() - parts[1].toInt()
                         finalText.setText(result.toString())
                         firstNum = ""
                         operator = ""
                         lastNum = ""
                     }
                 }
+
                 operator == "*" -> {
                     val parts = currentNum.split(operator)
-                    if(parts[0].contains(".")||parts[1].contains(".")){
+                    if (parts[0].contains(".") || parts[1].contains(".")) {
                         val front = parts[0].toDouble().toString()
                         val back = parts[1].toDouble().toString()
                         val part0 = BigDecimal(front)
                         val part1 = BigDecimal(back)
-                        var result = part0*part1
+                        var result = part0 * part1
                         if (result.remainder(BigDecimal.ONE).compareTo(BigDecimal.ZERO) == 0) {
                             result = result.setScale(0, RoundingMode.DOWN)
                             finalText.setText(result.toString())
                             firstNum = ""
                             operator = ""
                             lastNum = ""
-                        }else{
+                        } else {
                             finalText.setText(result.toString())
                             firstNum = ""
                             operator = ""
                             lastNum = ""
                         }
-                    }else{
-                        val result = parts[0].toInt()*parts[1].toInt()
+                    } else {
+                        val result = parts[0].toInt() * parts[1].toInt()
                         finalText.setText(result.toString())
                         firstNum = ""
                         operator = ""
                         lastNum = ""
                     }
                 }
+
                 operator == "/" -> {
                     val parts = currentNum.split(operator)
-                    if(parts[0].contains(".")||parts[1].contains(".")){
+                    if (parts[0].contains(".") || parts[1].contains(".")) {
                         val front = parts[0].toDouble().toString()
                         val back = parts[1].toDouble().toString()
                         val part0 = BigDecimal(front)
@@ -330,42 +298,52 @@ class MainActivity : AppCompatActivity() {
                         firstNum = ""
                         operator = ""
                         lastNum = ""
-                    }else{
-                        val front = parts[0].toDouble().toString()
-                        val back = parts[1].toDouble().toString()
-                        val part0 = BigDecimal(front)
-                        val part1 = BigDecimal(back)
-                        val value = (part0.divide(part1, part0.scale() + part1.scale(), RoundingMode.DOWN)).stripTrailingZeros().toString()
-                        finalText.setText(value)
+                    } else {
+                        val front = parts[0].toInt()
+                        val back = parts[1].toInt()
+                        val value = front.toDouble() / back.toDouble()
+                        finalText.setText(value.toString())
                         firstNum = ""
                         operator = ""
                         lastNum = ""
                     }
                 }
+
                 operator == "%" -> {
                     val parts = currentNum.split(operator)
-                    if(parts[0].contains(".")||parts[1].contains(".")){
+                    if (parts[0].contains(".") || parts[1].contains(".")) {
                         val front = parts[0].toDouble().toString()
                         val back = parts[1].toDouble().toString()
                         val part0 = BigDecimal(front)
                         val part1 = BigDecimal(back)
-                        var result = part0%part1
+                        var result = part0 % part1
                         finalText.setText(result.toString())
                         firstNum = ""
                         operator = ""
                         lastNum = ""
-                    }else{
-                        val result = parts[0].toInt()%parts[1].toInt()
+                    } else {
+                        val result = parts[0].toInt() % parts[1].toInt()
                         finalText.setText(result.toString())
                         firstNum = ""
                         operator = ""
                         lastNum = ""
                     }
                 }
-                else -> {finalText.setText(currentNum)}
+
+                else -> {
+                    finalText.setText(currentNum)
+                }
             }
         }
 
     }
+    fun clickListener(clickedNumber: String) {
+        val currentNum = finalText.text.toString()
+        if (finalText.text == "0") {
+            finalText.setText(clickedNumber)
+        } else {
+            val newNum = currentNum + clickedNumber
+            finalText.setText(newNum)
+        }
+    }
 }
-//부동 소수점오류
